@@ -6,5 +6,10 @@
 
     <bean id="numberGen" class="agard.spring.SimpleNumberGen"/>
 
+    <bean id="game" class="agard.spring.GameImpl">
+        <property name="numberGenerator" ref="numberGen"/>
+    </bean>
+
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
 
 </beans>

@@ -8,9 +8,6 @@ public class SimpleNumberGen implements NumberGenerator {
     private int maxNumber = 100;
 
     // Public methods
-    public SimpleNumberGen() {
-    }
-
     @Override
     public int next() {
         return random.nextInt(maxNumber);
