@@ -2,16 +2,20 @@ package agard.spring;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+@Component
 public class GameImpl implements Game {
 
     // Constants
     private final static Logger log = LoggerFactory.getLogger(GameImpl.class);
 
     // Variables
+    @Autowired
     private NumberGenerator numberGenerator;
     private int guessCount = 10;
     private int number;
@@ -30,7 +34,7 @@ public class GameImpl implements Game {
         this.remainingGuesses = guessCount;
         this.biggest = this.numberGenerator.getMaxNumber();
         this.number = this.numberGenerator.next();
-        log.info("the number is {}", this.number);
+        log.debug("the number is {}",this.number);
     }
     @PreDestroy
     public void preDestroy() {
@@ -38,10 +42,6 @@ public class GameImpl implements Game {
     }
 
     // Public Method
-    public void setNumberGenerator(NumberGenerator numberGen){
-        this.numberGenerator = numberGen;
-    }
-
     @Override
     public int getNumber() {
         return this.number;
