@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component
+
 public class GameImpl implements Game {
 
     // Constants
@@ -36,6 +36,7 @@ public class GameImpl implements Game {
         this.number = this.numberGenerator.next();
         log.debug("the number is {}",this.number);
     }
+
     @PreDestroy
     public void preDestroy() {
         log.info("in Game PreDestroy");
