@@ -3,7 +3,7 @@ package agard.spring;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -17,7 +17,9 @@ public class GameImpl implements Game {
     // Variables
     @Autowired
     private NumberGenerator numberGenerator;
-    private int guessCount = 10;
+    @Autowired
+    @GuessCount
+    private int guessCount;
     private int number;
     private int guess;
     private int smallest;
@@ -29,12 +31,14 @@ public class GameImpl implements Game {
     @PostConstruct
     @Override
     public void reset() {
-        this.smallest = 0;
-        this.guess = 0;
+        this.smallest = this.numberGenerator.getMinNumber();
+        this.guess = this.numberGenerator.getMinNumber();
         this.remainingGuesses = guessCount;
         this.biggest = this.numberGenerator.getMaxNumber();
         this.number = this.numberGenerator.next();
         log.debug("the number is {}",this.number);
+        log.debug("the max is {}",this.biggest);
+        log.debug("the min is {}",this.smallest);
     }
 
     @PreDestroy
@@ -74,6 +78,10 @@ public class GameImpl implements Game {
     }
 
     @Override
+    public int getGuessCount() {
+        return guessCount;
+    }
+    @Override
     public void check() {
         checkValidNumberRange();
 
@@ -108,6 +116,7 @@ public class GameImpl implements Game {
     private void checkValidNumberRange() {
         this.validNumberRange = (this.guess >= this.smallest) && (this.guess <= biggest);
     }
+
 
 }
 

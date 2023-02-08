@@ -1,6 +1,6 @@
 package agard.spring.console;
 
-import agard.spring.AppConfig;
+import agard.spring.config.AppConfig;
 import agard.spring.MessageGenerator;
 import agard.spring.NumberGenerator;
 import org.slf4j.Logger;
