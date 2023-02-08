@@ -51,7 +51,7 @@ public class SimpleMessageGen implements MessageGenerator {
                 direction = "Higher";
             }
             return direction + "! Your have " + game.getRemainingGuesses() +
-                    "guesses left";
+                    " guesses left";
         }
     }
 
