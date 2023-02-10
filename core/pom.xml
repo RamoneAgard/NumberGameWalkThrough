@@ -26,6 +26,14 @@
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+<!--            If a manual download is needed, this is how it is included-->
+<!--            <scope>system</scope>-->
+<!--            <systemPath>${basedir}/../libs/lombok-edge.jar</systemPath>-->
+        </dependency>
     </dependencies>
 
 </project>

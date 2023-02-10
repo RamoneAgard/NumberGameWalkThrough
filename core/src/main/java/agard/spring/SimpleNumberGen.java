@@ -1,18 +1,21 @@
 package agard.spring;
 
+import lombok.AccessLevel;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
+@Getter
 @Component
 public class SimpleNumberGen implements NumberGenerator {
+
     // Fields
-    private final Random random = new Random();
-
     private final int maxNumber;
-
     private final int minNumber;
+    @Getter(AccessLevel.NONE)
+    private final Random random = new Random();
 
     // Constructors
     @Autowired
@@ -27,13 +30,4 @@ public class SimpleNumberGen implements NumberGenerator {
         return minNumber + random.nextInt(maxNumber - minNumber);
     }
 
-    @Override
-    public int getMaxNumber() {
-        return maxNumber;
-    }
-
-    @Override
-    public int getMinNumber(){
-        return minNumber;
-    }
 }

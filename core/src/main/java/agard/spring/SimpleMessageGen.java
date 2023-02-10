@@ -1,18 +1,15 @@
 package agard.spring;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+@Slf4j
 @Component
 public class SimpleMessageGen implements MessageGenerator {
-
-    // Constants
-    private final static Logger log = LoggerFactory.getLogger(SimpleMessageGen.class);
 
     // Fields
     private final Game game;
