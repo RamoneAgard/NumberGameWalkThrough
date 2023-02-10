@@ -3,23 +3,22 @@ package agard.spring;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-
+@Component
 public class GameImpl implements Game {
 
     // Constants
     private final static Logger log = LoggerFactory.getLogger(GameImpl.class);
 
     // Variables
-    @Autowired
-    private NumberGenerator numberGenerator;
-    @Autowired
-    @GuessCount
-    private int guessCount;
+    private final NumberGenerator numberGenerator;
+    private final int guessCount;
+
     private int number;
     private int guess;
     private int smallest;
@@ -27,14 +26,22 @@ public class GameImpl implements Game {
     private int remainingGuesses;
     private boolean validNumberRange = true;
 
+
+    // Constructors
+    @Autowired
+    public GameImpl(NumberGenerator numberGenerator, @GuessCount int guessCount) {
+        this.numberGenerator = numberGenerator;
+        this.guessCount = guessCount;
+    }
+
     // Init method
     @PostConstruct
     @Override
     public void reset() {
         this.smallest = this.numberGenerator.getMinNumber();
+        this.biggest = this.numberGenerator.getMaxNumber();
         this.guess = this.numberGenerator.getMinNumber();
         this.remainingGuesses = guessCount;
-        this.biggest = this.numberGenerator.getMaxNumber();
         this.number = this.numberGenerator.next();
         log.debug("the number is {}",this.number);
         log.debug("the max is {}",this.biggest);

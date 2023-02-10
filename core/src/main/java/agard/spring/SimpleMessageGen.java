@@ -4,17 +4,24 @@ package agard.spring;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+@Component
 public class SimpleMessageGen implements MessageGenerator {
 
     // Constants
     private final static Logger log = LoggerFactory.getLogger(SimpleMessageGen.class);
 
     // Fields
+    private final Game game;
+
+    //Constructors
     @Autowired
-    private Game game;
+    public SimpleMessageGen(Game game) {
+        this.game = game;
+    }
 
     // Init Methods
     @PostConstruct
