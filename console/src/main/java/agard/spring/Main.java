@@ -1,11 +1,11 @@
-package agard.spring.console;
+package agard.spring;
 
-import agard.spring.config.GameConfig;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
+@SpringBootApplication
 public class Main {
 
     // (the beans.xml config file located in the resources dir)
@@ -13,18 +13,24 @@ public class Main {
 
     public static void main(String[] args) {
         log.info("Guess the Number Game");
+        // Spring boot Application start-up //
+
+        SpringApplication.run(Main.class, args);
+
+
+        // Spring Application context //
 
         // Create context (container)
         // (when using a beans.xml config file)
 //        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(CONFIG_LOCATION);
         // (when using a java configuration class)
-        ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(GameConfig.class);
+//        ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(GameConfig.class);
 
         // Get Number Generator Bean from context/container
         // (when using component annotations(with no name) on a single implementation)
 //        NumberGenerator numberGenerator = context.getBean(NumberGenerator.class);
         // (when using listing in the beans config file)
-        //NumberGenerator numberGenerator = context.getBean("numberGen", NumberGenerator.class);
+//        NumberGenerator numberGenerator = context.getBean("numberGen", NumberGenerator.class);
 
         // Get MessageGenerator bean
 //        MessageGenerator msgGen = context.getBean(MessageGenerator.class);
@@ -33,6 +39,6 @@ public class Main {
 
 
         //close container
-        context.close();
+//        context.close();
     }
 }

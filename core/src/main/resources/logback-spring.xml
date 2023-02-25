@@ -1,0 +1,8 @@
+<configuration>
+<!--    include base logging config from spring boot -->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <logger name="agard.spring" level="DEBUG"/>
+    <logger name="org.springframework" level="INFO"/>
+
+</configuration>
