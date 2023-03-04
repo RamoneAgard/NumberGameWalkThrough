@@ -1,0 +1,14 @@
+<thlogic>
+    <attr sel="#headId"
+          th:replace="~{fragments/head :: headFragment}"/>
+
+    <attr sel="#welcome"
+          th:text="#{game.welcome}"/>
+
+    <attr sel="#play-link"
+          th:href="@{__${T(agard.spring.util.GameMappings).PLAY}__}"
+          th:text="#{game.playLink}"/>
+
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer :: footFragment}"/>
+</thlogic>

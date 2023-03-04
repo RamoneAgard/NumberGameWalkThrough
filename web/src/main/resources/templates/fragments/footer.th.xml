@@ -1,0 +1,6 @@
+<thlogic>
+    <attr sel="#footerId"
+          th:fragment="footFragment"/>
+    <attr sel="#created-by"
+          th:text="|#{game.createdBy} Ramone Agard, #{game.createdBy2} Tim Buchalka|"/>
+</thlogic>

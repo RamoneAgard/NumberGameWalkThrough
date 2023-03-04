@@ -1,0 +1,25 @@
+<thlogic>
+    <attr sel="#headId"
+          th:replace="~{fragments/head :: headFragment}"/>
+
+    <attr sel="#game-title"
+          th:text="#{game.title}"/>
+
+    <attr sel="#game-over"
+          th:text="#{game.gameOver}"/>
+
+    <attr sel="#result-message"
+          th:text="${__${T(agard.spring.util.AttributeNames).RESULT_MESSAGE}__}"/>
+
+    <attr sel="#restart-link"
+          th:href="@{__${T(agard.spring.util.GameMappings).RESTART}__}"
+          th:text="#{game.playAgain}"/>
+
+    <attr sel="#home-link"
+          th:href="@{__${T(agard.spring.util.GameMappings).HOME}__}"
+          th:text="#{game.home}"/>
+
+    <attr sel="#footerId"
+          th:replace="~{fragments/footer :: footFragment}"/>
+
+</thlogic>
