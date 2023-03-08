@@ -3,6 +3,8 @@ package agard.spring;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -11,13 +13,17 @@ import javax.annotation.PostConstruct;
 @Component
 public class SimpleMessageGen implements MessageGenerator {
 
+    // Constants //
+    private static final String MAIN_MESSAGE = "game.main.message";
     // Fields
     private final Game game;
+    private final MessageSource messageSource;
 
     //Constructors
     @Autowired
-    public SimpleMessageGen(Game game) {
+    public SimpleMessageGen(Game game, MessageSource messageSource) {
         this.game = game;
+        this.messageSource = messageSource;
     }
 
     // Init Methods
@@ -29,9 +35,7 @@ public class SimpleMessageGen implements MessageGenerator {
     //Public Methods
     @Override
     public String getMainMessage() {
-        return "The number is between " + game.getSmallest() +
-                " and " + game.getBiggest() +
-                ". Can you guess it?";
+        return getMessage(MAIN_MESSAGE, game.getSmallest(), game.getBiggest());
     }
 
     @Override
@@ -57,6 +61,12 @@ public class SimpleMessageGen implements MessageGenerator {
                     " guesses left";
         }
     }
+
+    // privage methods //
+    private String getMessage(String code, Object... args){
+        return messageSource.getMessage(code, args, LocaleContextHolder.getLocale());
+    }
+
 
 }
 
